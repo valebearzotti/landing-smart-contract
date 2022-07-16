@@ -9,20 +9,15 @@ import { MetaMaskContext } from '../../hooks/useMetaMask';
 
 function Home() {
 
-  const [task, setTask] = useState({
-    name: '',
-    description: ''
-  })
+
 
   const { walletConnection, account, checkConnection } = useContext(MetaMaskContext)
-
-  const [id, setId] = useState(0)
 
   const contractAddress = '0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6'
 
   //const [account, setAccount] = useState(null)
 
-  const [currentTask, setCurrentTask] = useState(null)
+
 
   const [buttonText, setButtonText] = useState("Connect your wallet")
   const [subtitle, setSubtitle] = useState("")
@@ -31,7 +26,6 @@ function Home() {
   const [signer, setSigner] = useState(null)
   const [contract, setContract] = useState(null)
 
-  const [txs, setTxs] = useState([])
 
 
   /*const walletConnection = () => {

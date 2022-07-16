@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { MetaMaskContext } from './hooks/useMetaMask';
 
 const Home = React.lazy(() => import('./components/routes/Home'));
+const Dashboard = React.lazy(() => import('./components/routes/Dashboard'));
 
 function AppRouter() {
 
@@ -52,9 +53,10 @@ function AppRouter() {
     const values = useMemo(
         () => ({
             walletConnection,
-            account
+            account, 
+            contract
         }),
-        [account]
+        [account, contract]
     )
 
     return (
@@ -63,6 +65,7 @@ function AppRouter() {
                 <MetaMaskContext.Provider value={values}>
                     <Routes>
                         <Route path='/' element={<Home />} />
+                        <Route path='/dashboard' element={<Dashboard />} />
                     </Routes>
                 </MetaMaskContext.Provider>
             </Suspense>
