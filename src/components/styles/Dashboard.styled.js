@@ -10,7 +10,7 @@ export const Container = styled.div`
 `
 
 export const Glass = styled.div`
-    height: 80vh;
+    height: 90vh;
     width: 80vw;
     background: rgba( 255, 255, 255, 0.1 );
     box-shadow: 20px 20px 50px 0 rgba( 0, 0, 0, 0.5 );
@@ -48,6 +48,7 @@ export const Button = styled.button`
 export const AccountDisplay = styled.div`
     font-weight: 600;
     font-size: 25px;
+    word-break: break-all;
     color: white;
     margin-bottom: auto;
 `
@@ -67,7 +68,6 @@ export const TaskForm = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 `
 
 export const Label = styled.label`
@@ -101,18 +101,82 @@ export const TextArea = styled.textarea`
 
 export const TaskContainer = styled.div`
     display: flex;
+    border-bottom: 1px solid rgba( 255, 255, 255, 0.2 );
+    margin: auto;
+    width: 100%;
+    ${Button}{
+        margin: auto 0px auto auto;
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+`
+
+export const TasksDisplay = styled.div`
+    overflow-y: auto;
+    max-height: 650px;
 `
 
 export const Name = styled.div`
     color: white;
     font-size: 14px;
+    margin-top: 5px;
+`
+
+export const Checkbox = styled.input`
+    margin-right: 10px;
 `
 
 export const Description = styled.div`
     color: white;
     font-size: 12px;
+    padding: 10px 30px 10px 0px;
+`
+
+export const TaskDisplay = styled.div`
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-decoration: ${props => props.completed ? 'line-through 2px' : 'none'};
 `
 
 export const Delete = styled.button`
+    margin: auto 0px auto 20px;
+    width: 100px;
+    outline: none;
+    color: #161623;
+    padding: 8px 10px;
+    border: 0px;
+    border-radius: 30px;
+    font-weight: 400;
+    background-color: #f20000;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+    font-size: 14px;
+    color: white;
+    &:hover {
+        background-color: #a50000;
+    }
+`
 
+export const Status = styled.span`
+    color: white;
+`
+
+export const CircleOne = styled.div`
+    img{
+        position: absolute;
+        top: 60%;
+        left: 2%;
+        width: 200px;
+    }
+`
+
+export const CircleTwo = styled.div`
+    img{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        width: 320px;
+    }
 `

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ethers } from "ethers";
-import { abi } from '../../network/sc-abi';
 import * as Styles from '../styles/Home.styled'
 import circleOne from '../../assets/svg/circleone.svg'
 import circleTwo from '../../assets/svg/circletwo.svg'
@@ -9,39 +7,11 @@ import { MetaMaskContext } from '../../hooks/useMetaMask';
 
 function Home() {
 
-
-
-  const { walletConnection, account, checkConnection } = useContext(MetaMaskContext)
-
-  const contractAddress = '0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6'
-
-  //const [account, setAccount] = useState(null)
-
+  const { walletConnection, account } = useContext(MetaMaskContext)
 
 
   const [buttonText, setButtonText] = useState("Connect your wallet")
   const [subtitle, setSubtitle] = useState("")
-
-  const [provider, setProvider] = useState(null)
-  const [signer, setSigner] = useState(null)
-  const [contract, setContract] = useState(null)
-
-
-
-  /*const walletConnection = () => {
-    setText("Connecting...")
-    if (window.ethereum) {
-      window.ethereum.request({method: 'eth_requestAccounts'})
-      .then(result => {
-        setText("Wallet connected!")
-        setAccount(result[0])
-        redirect()
-        updateEthers()
-      })
-    } else {
-        setSubtitle("You need to enable MetaMask.")
-    }
-  }*/
 
   let navigate = useNavigate()
 
@@ -50,17 +20,6 @@ function Home() {
     setTimeout(() => {
       navigate('/dashboard')
     }, 2000);
-  }
-
-  const updateEthers = () => {
-    let tempProvider = new ethers.providers.Web3Provider(window.ethereum)
-    setProvider(tempProvider)
-
-    let tempSigner = tempProvider.getSigner()
-    setSigner(tempSigner)
-
-    let tempContract = new ethers.Contract(contractAddress, abi, tempSigner)
-    setContract(tempContract)
   }
 
   const connect = () => {
@@ -77,6 +36,12 @@ function Home() {
     }
   }, [account])
 
+  useEffect(() => {
+    if(!window.ethereum){
+      setButtonText("MetaMask not found")
+    }
+  }, [])
+
   return (
     <div>
       <Styles.GlobalStyle />
@@ -90,7 +55,7 @@ function Home() {
           <Styles.Divider>
               <Styles.Box>
                   <Styles.Title>Let's get started!</Styles.Title>
-                  <Styles.Button onClick={connect}>{buttonText}</Styles.Button>
+                  <Styles.Button onClick={connect} disabled={(!window.ethereum) ? true : false}>{buttonText}</Styles.Button>
                   {(!window.ethereum)
                   ?
                     <Styles.Subtitle>You need to enable <Styles.Link href="https://metamask.io/" target="_blank">MetaMask</Styles.Link> to continue.</Styles.Subtitle>
