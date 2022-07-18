@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { MetaMaskProvider } from './hooks/useMetaMask';
 
 import AppRouter from './router';
 

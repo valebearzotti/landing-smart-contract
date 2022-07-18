@@ -47,7 +47,7 @@ function Dashboard() {
         let clean = []
         // I do this in order not to get empty values due to deletion :/
         tasksResult.map((t, i)=>{
-            if(t.name.length != 0) {
+            if(t.name.length !== 0) {
                 clean.push(t)
             }
         })
